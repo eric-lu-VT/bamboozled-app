@@ -1,36 +1,29 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import Home from './../containers/home'
+import { Landing, About } from './../containers';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const MainTabNavigator = () => {
+const TabNavigator = () => {
   return (
-    <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+    <Tab.Navigator initialRouteName="Landing">
+      <Tab.Screen name="Landing" component={Landing} />
+      <Tab.Screen name="About" component={About} />
     </Tab.Navigator>
   );
 };
-
-const MainStackNavigator = () => {
-  return (
-    <Stack.Navigator initialRouteName="Home" mode="modal">
-      <Stack.Screen name="Home" component={MainTabNavigator} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-}
 
 const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={MainStackNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default Navigator;

@@ -1,15 +1,9 @@
-import { createBackendAxiosRequest } from '.';
+import axios from 'axios';
+import { BACKEND_URL, requestTimeout } from '../../utils/constants';
 
-export const signUpUserRequest = async (email, password, name) => createBackendAxiosRequest({
-  method: 'post',
-  url: '/auth/signup',
-  data: {
-    email, password, name,
-  },
-});
-
-export const signInUserRequest = async (email, password) => createBackendAxiosRequest({
-  method: 'post',
-  url: '/auth/signin',
-  data: { email, password },
+export const createBackendAxiosRequest = async (config) => axios({
+  baseURL: `${BACKEND_URL}`,
+  timeout: requestTimeout,
+  withCredentials: true,
+  ...config
 });
