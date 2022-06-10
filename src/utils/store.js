@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
+import { v4 as uuidv4 } from 'uuid';
 
 import { authTokenName } from './constants';
 
@@ -48,7 +50,7 @@ export async function getBearerTokenHeader() {
     return ({ Authorization: `Bearer ${token}` });
   }
   catch(e) {
-    console.log('get bearerTokenError:' + e);
+    console.error('get bearerTokenError:' + e);
   }
 }
 
@@ -61,7 +63,7 @@ export async function setBearerToken(token) {
     await AsyncStorage.setItem(authTokenName, token);
   }
   catch(e) {
-    console.log('set bearerTokenError:' + e);
+    console.error('set bearerTokenError:' + e);
   }
 }
 
@@ -73,7 +75,49 @@ export async function removeBearerToken() {
     await AsyncStorage.removeItem(authTokenName);
   }
   catch(e) {
-    console.log('remove bearerTokenError:' + e);
+    console.error('remove bearerTokenError:' + e);
+  }
+}
+
+export async function getDeviceId() {
+  try {
+    let uuid = uuidv4();
+    let fetchUUID = await SecureStore.getItemAsync('secure_deviceid');
+    //if user has already signed up prior
+    if (fetchUUID) {
+      uuid = fetchUUID
+    }
+    await SecureStore.setItemAsync('secure_deviceid', uuid);
+    
+    return uuid;
+  }
+  catch(e) {
+    console.error('getDeviceId:' + e);
+  }
+}
+
+export async function getUsername() {
+  try {
+    let fetchUsername = await SecureStore.getItemAsync('secure_username');
+    //if username set prior
+    if (fetchUsername) {
+      return fetchUsername;
+    }
+    else {
+      return 'noName';
+    }
+  }
+  catch(e) {
+    console.error('getUsername:' + e);
+  }
+}
+
+export async function setUsername(newName) {
+  try {
+    await SecureStore.setItemAsync('secure_username', newName);
+  }
+  catch(e) {
+    console.error('setUsername:' + e);
   }
 }
 

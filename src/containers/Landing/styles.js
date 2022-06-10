@@ -11,4 +11,14 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width * 0.5,
     height: Dimensions.get('window').width * 0.5,
   },
+  button: {
+    borderWidth:1,
+    borderColor:'rgba(0,0,0,0.2)',
+    alignItems:'center',
+    justifyContent:'center',
+    width:250,
+    height:100,
+    backgroundColor:'#C4C4C4',
+    marginTop: 60
+  },
 });
