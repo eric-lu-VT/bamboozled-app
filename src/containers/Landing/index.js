@@ -5,14 +5,12 @@ import { connectSocket, disconnectSocket } from '../../store/actionCreators/sock
 import { createGame, createGameReceive } from '../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
-  authenticated: state.auth.authenticated,
+  deviceId: state.user.deviceId,
+  username: state.user.username
 });
 
 const mapDispatchToProps = {
-  connectSocket,
-  disconnectSocket,
   createGame,
-  createGameReceive
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen);
