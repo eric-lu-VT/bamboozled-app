@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  // console.log(`${action.type}_${action.status}`);
+  // console.log(action.type);
   // console.log(action);
   switch (action.type) {
     case ActionTypes.SOCKET_CONNECT_SUCCESS: 

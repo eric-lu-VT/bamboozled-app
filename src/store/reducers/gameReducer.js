@@ -1,16 +1,18 @@
 import ActionTypes from '../../utils/store';
 
 const initialState = {
-  
+  gameId: {},
 };
 
 const reducer = (state = initialState, action) => {
-  // console.log(`${action.type}_${action.status}`);
+  // console.log(action.type);
   // console.log(action.payload);
-  switch (`${action.type}_${action.status}`) {
-    case `${ActionTypes.SEND}_SUCCESS`: 
-      console.log('hit reducer!');
-      return state;
+  switch (action.type) {
+    case ActionTypes.START_GAME_RECEIVE_SUCCESS: 
+      return {
+        ...state,
+        gameId: action.gameId,
+      }
     default:
       return state;
   }

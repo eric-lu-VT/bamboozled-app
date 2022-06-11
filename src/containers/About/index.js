@@ -1,3 +1,3 @@
-import LandingScreen from "./component";
+import AboutScreen from "./component";
 
-export default LandingScreen;
+export default AboutScreen;

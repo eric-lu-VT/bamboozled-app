@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
-import LandingScreen from './component';
-import { connectSocket, disconnectSocket } from '../../store/actionCreators/socketActionCreator';
+import WaitingRoomScreen from './component';
 import { createGame, createGameReceive } from '../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
@@ -9,10 +8,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  connectSocket,
-  disconnectSocket,
   createGame,
   createGameReceive
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoomScreen);
