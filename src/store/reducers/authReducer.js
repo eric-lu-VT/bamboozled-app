@@ -7,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   // console.log(`${action.type}_${action.status}`);
-  // console.log(action.payload);
+  // console.log(action);
   switch (`${action.type}_${action.status}`) {
     case `${ActionTypes.FETCH_USER}_SUCCESS`: // Load user into { id: element } mapping
       return { ...state, users: action.payload.data };
