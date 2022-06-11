@@ -1,35 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
-import { getDeviceId, getUsername, setUsername } from '../../utils/store';
 
-const LandingScreen = ({ 
-  authenticated, 
-  connectSocket, 
-  disconnectSocket,
+const LandingScreen = ({  
+  deviceId,
+  username,
   createGame, 
-  createGameReceive 
 }) => {
   const navigation = useNavigation();
-  
-  const [deviceId, setDeviceId] = useState(null);
-  const [name, setName] = useState(null);
-
-  useEffect(() => {
-    async function setup() {
-      const tid = await getDeviceId();
-      setDeviceId(tid);
-      const tname = await getUsername();
-      setName(tname);
-      await connectSocket()
-        .then(() => createGameReceive());
-    }
-    
-    setup();
-    return () => disconnectSocket();
-  }, []);
   
   return (
     <SafeAreaView style={styles.container}>
