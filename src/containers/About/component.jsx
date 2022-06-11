@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import styles from './styles';
 
-const LandingScreen = () => {
+const AboutScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text>About Screen</Text>
@@ -10,4 +10,4 @@ const LandingScreen = () => {
   );
 };
 
-export default LandingScreen;
+export default AboutScreen;
