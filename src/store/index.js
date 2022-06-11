@@ -1,7 +1,24 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+import socketMiddleware from './middleware/socketMiddleware';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export default function configureStore(socketClient) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  
+  const middleware = [
+    thunk,
+    socketMiddleware(socketClient)
+  ]
+  
+  const store = createStore(
+    reducers, 
+    composeEnhancers(
+      applyMiddleware(
+        ...middleware
+      )
+    )
+  );
 
-export default createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+  return store;
+}

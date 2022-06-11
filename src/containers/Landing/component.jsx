@@ -2,10 +2,23 @@ import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
-import { SocketContext } from '../../utils/socket';
 import { getDeviceId, getUsername, setUsername } from '../../utils/store';
 
-const LandingScreen = ({ authenticated }) => {
+const LandingScreen = ({ connectSocket, authenticated }) => {
+  useEffect(() => {
+    connectSocket();
+  });
+  
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text>Landing Screen</Text>
+    </SafeAreaView>
+  )
+};
+
+export default LandingScreen;
+
+/*
   const socket = useContext(SocketContext);
   
   const [deviceId, setDeviceId] = useState(null);
@@ -62,6 +75,4 @@ const LandingScreen = ({ authenticated }) => {
       </TouchableOpacity>
     </SafeAreaView>
   );
-};
-
-export default LandingScreen;
+  */
