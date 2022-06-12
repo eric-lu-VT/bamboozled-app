@@ -1,15 +1,13 @@
 import { connect } from 'react-redux';
 
-import WaitingRoomScreen from './component';
-import { createGame, createGameReceive } from '../../store/actionCreators/gameActionCreator';
+import WaitingRoom from './component';
 
 const mapStateToProps = (state) => ({
-  authenticated: state.auth.authenticated,
+  gameId: state.game.gameId
 });
 
 const mapDispatchToProps = {
-  createGame,
-  createGameReceive
+  
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoomScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(WaitingRoom);

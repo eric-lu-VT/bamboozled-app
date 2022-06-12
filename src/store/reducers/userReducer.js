@@ -6,8 +6,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  console.log(action);
-  
   switch (action.type) {
     case ActionTypes.INITIALIZE_USER:
       return {
@@ -16,6 +14,7 @@ const reducer = (state = initialState, action) => {
         username: action.username
       }
     case ActionTypes.CHANGE_USERNAME:
+      console.log(action);
       return {
         ...state,
         username: action.username

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import LandingScreen from './component';
+import Landing from './component';
 import { connectSocket, disconnectSocket } from '../../store/actionCreators/socketActionCreator';
 import { createGame, createGameReceive } from '../../store/actionCreators/gameActionCreator';
 
@@ -13,4 +13,4 @@ const mapDispatchToProps = {
   createGame,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

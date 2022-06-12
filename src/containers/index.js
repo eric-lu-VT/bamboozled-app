@@ -1,5 +1,5 @@
 import Landing from './Landing';
-import About from './About';
 import WaitingRoom from './WaitingRoom';
+import Settings from './Settings';
 
-export { Landing, About, WaitingRoom };
+export { Landing, WaitingRoom, Settings };

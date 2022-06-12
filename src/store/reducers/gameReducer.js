@@ -1,7 +1,7 @@
 import ActionTypes from '../../utils/store';
 
 const initialState = {
-  gameId: {},
+  gameId: '',
 };
 
 const reducer = (state = initialState, action) => {
