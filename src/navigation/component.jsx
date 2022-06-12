@@ -11,7 +11,8 @@ const Navigator = ({
   connectSocket, 
   disconnectSocket,
   initializeUser, 
-  createGameReceive 
+  createGameReceive,
+  joinGameReceive
 }) => {
   
   useEffect(() => {
@@ -19,7 +20,8 @@ const Navigator = ({
       initializeUser(await getDeviceId(), await getUsername());
 
       await connectSocket()
-        .then(() => createGameReceive());
+        .then(() => createGameReceive())
+        .then(() => joinGameReceive());
     }
     setup();
     return () => disconnectSocket();

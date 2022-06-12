@@ -9,10 +9,11 @@ const Landing = ({
   deviceId,
   username,
   createGame, 
+  joinGame
 }) => {
   const navigation = useNavigation();
 
-  const [gameId, setGameId] = useState('');
+  const [tgameId, tsetGameId] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,7 +21,7 @@ const Landing = ({
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => {
-          createGame(deviceId);
+          createGame(deviceId, username);
           navigation.navigate('Waiting Room')
         }
       }> 
@@ -29,12 +30,13 @@ const Landing = ({
       <CharacterInput
         placeHolder='    '
         showCharBinary='1111'
-        handleChange={(text) => setGameId(text)}
+        handleChange={(text) => tsetGameId(text)}
         inputType='underlined'
       />
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => {
+          joinGame(deviceId, username, tgameId);
           navigation.navigate('Waiting Room');
         }}> 
         <Text style={styles.lf}>Join Game</Text>
