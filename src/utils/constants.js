@@ -1,5 +1,5 @@
 // Server URL for making backend requests
-export const BACKEND_URL = 'http://192.168.1.14:9090';
+export const BACKEND_URL = 'http://192.168.1.11:9090';
 // export const BACKEND_URL = '';
 
 // Auth token name for storage and transmission to backend

@@ -23,8 +23,7 @@ export function createGameReceive() {
         type: ActionTypes.START_GAME_RECEIVE_SUCCESS,
         gameId: res.gameId,
         active: res.active,
-        lives: res.lives,
-        alive: res.alive,
+        clients: res.clients
       })
     }
     return dispatch({
@@ -60,20 +59,32 @@ export function joinGameReceive() {
           type: ActionTypes.JOIN_GAME_RECEIVE_SUCCESS,
           gameId: res.gameId,
           active: res.active,
-          lives: res.lives,
-          alive: res.alive,
-        })
+          clients: res.clients,
+        });
       }
       else {
         return dispatch({
           type: ActionTypes.JOIN_GAME_RECEIVE_FAIL,
-        })
+        });
       }
     }
     return dispatch({
       type: 'socket',
       types: [null, null, null],
       promise: (socket) => socket.on('joinGame', newRes)
-    })
+    });
   }
+}
+export function joinGameOtherReceive() {
+  const newRes = (res) => {
+    return dispatch({
+      type: ActionTypes.JOIN_GAME_RECEIVE_OTHER_SUCCESS
+    });
+  }
+  
+  return dispatch({
+    type: 'socket',
+    types: [null, null, null],
+    promise: (socket) => socket.on('joinGameOther', newRes)
+  });
 }
