@@ -3,8 +3,7 @@ import ActionTypes from '../../utils/store';
 const initialState = {
   gameId: '',
   active: false,
-  lives: 0,
-  alive: false,
+  clients: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,16 +15,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         gameId: action.gameId,
         active: action.active,
-        lives: action.lives,
-        alive: action.alive,
+        clients: action.clients,
       }
     case ActionTypes.JOIN_GAME_RECEIVE_SUCCESS:
       return {
         ...state,
         gameId: action.gameId,
         active: action.active,
-        lives: action.lives,
-        alive: action.alive,
+        clients: action.clients,
       }
     default:
       return state;
