@@ -7,12 +7,15 @@ const AfterRollStage = ({
   isTurn,
   clients,
   currentPlayerId,
+  gameId,
+  deviceId,
+  rollDice,
 }) => {
   return (
     <View>
       {isTurn ?
         <View>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <TouchableOpacity style={styles.button} onPress={() => rollDice(deviceId, gameId)}> 
             <Text style={styles.lf}>Roll Dice</Text>
           </TouchableOpacity>
         </View>

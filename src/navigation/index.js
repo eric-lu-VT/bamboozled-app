@@ -9,7 +9,9 @@ import {
   joinGameOtherReceive, 
   gameReconnectReceive,
   initGameReceive, 
-  nextRoundReceive 
+  nextRoundReceive,
+  rollDiceReceive,
+  rollDiceOtherReceive
 } from '../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
@@ -25,6 +27,8 @@ const mapDispatchToProps = {
   gameReconnectReceive,
   initGameReceive,
   nextRoundReceive,
+  rollDiceReceive,
+  rollDiceOtherReceive
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator);
