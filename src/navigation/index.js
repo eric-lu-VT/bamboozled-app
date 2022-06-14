@@ -4,7 +4,13 @@ import AppNavigator from './component';
 
 import { connectSocket, disconnectSocket } from '../store/actionCreators/socketActionCreator';
 import { initializeUser } from '../store/actionCreators/userActionCreator';
-import { joinGameReceive, joinGameOtherReceive, gameReconnectReceive } from '../store/actionCreators/gameActionCreator';
+import { 
+  joinGameReceive, 
+  joinGameOtherReceive, 
+  gameReconnectReceive,
+  initGameReceive, 
+  nextRoundReceive 
+} from '../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
   gameId: state.game.gameId,
@@ -17,6 +23,8 @@ const mapDispatchToProps = {
   joinGameReceive,
   joinGameOtherReceive,
   gameReconnectReceive,
+  initGameReceive,
+  nextRoundReceive,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator);

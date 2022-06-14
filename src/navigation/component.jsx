@@ -15,6 +15,8 @@ const Navigator = ({
   joinGameReceive,
   joinGameOtherReceive,
   gameReconnectReceive,
+  initGameReceive,
+  nextRoundReceive,
 }) => {
   
   useEffect(() => {
@@ -24,7 +26,9 @@ const Navigator = ({
       await connectSocket()
         .then(() => joinGameReceive())
         .then(() => joinGameOtherReceive())
-        .then(() => gameReconnectReceive());
+        .then(() => gameReconnectReceive())
+        .then(() => initGameReceive())
+        .then(() => nextRoundReceive());
     }
     setup();
     return () => disconnectSocket();

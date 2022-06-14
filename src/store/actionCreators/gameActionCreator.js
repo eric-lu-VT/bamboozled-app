@@ -9,9 +9,9 @@ export function createGame(deviceId, username) {
   return {
     type: 'socket',
     types: [
-      ActionTypes.START_GAME_SEND,
-      ActionTypes.START_GAME_SEND_SUCCESS,
-      ActionTypes.START_GAME_SEND_FAIL
+      ActionTypes.CREATE_GAME_SEND,
+      ActionTypes.CREATE_GAME_SEND_SUCCESS,
+      ActionTypes.CREATE_GAME_SEND_FAIL
     ],
     promise: (socket) => socket.emit('gameAction', req)
   }
@@ -103,6 +103,106 @@ export function gameReconnectReceive() {
       type: 'socket',
       types: [null, null, null],
       promise: (socket) => socket.on('gameReconnect', newRes)
+    });
+  }
+}
+
+export function initGame(deviceId, gameId) {
+  const req = {
+    url: 'initGame',
+    id: deviceId,
+    gameId
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.INIT_GAME_SEND,
+      ActionTypes.INIT_GAME_SEND_SUCCESS,
+      ActionTypes.INIT_GAME_SEND_FAIL
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function initGameReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          type: ActionTypes.INIT_GAME_RECEIVE_SUCCESS,
+          gameId: res.gameId,
+          active: res.active,
+          isHost: res.isHost,
+          isTurn: res.isTurn,
+          clients: res.clients,
+          currentPlayerId: res.currentPlayerId,
+          prevPlayerId: res.prevPlayerId,
+          reportedRoll: res.reportedRoll,
+          dice1: res.dice1,
+          dice2: res.dice2,
+          curStage: res.curStage,
+          turnResult: res.turnResult,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.INIT_GAME_RECEIVE_FAIL,
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('initGame', newRes)
+    });
+  }
+}
+
+export function nextRound(deviceId, gameId) {
+  const req = {
+    url: 'nextRound',
+    id: deviceId,
+    gameId
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.NEXT_ROUND_SEND,
+      ActionTypes.NEXT_ROUND_SEND_SUCCESS,
+      ActionTypes.NEXT_ROUND_SEND_FAIL
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function nextRoundReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          type: ActionTypes.NEXT_ROUND_RECEIVE_SUCCESS,
+          gameId: res.gameId,
+          active: res.active,
+          isHost: res.isHost,
+          isTurn: res.isTurn,
+          clients: res.clients,
+          currentPlayerId: res.currentPlayerId,
+          prevPlayerId: res.prevPlayerId,
+          reportedRoll: res.reportedRoll,
+          dice1: res.dice1,
+          dice2: res.dice2,
+          curStage: res.curStage,
+          turnResult: res.turnResult,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.NEXT_ROUND_RECEIVE_FAIL,
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('nextRound', newRes)
     });
   }
 }
