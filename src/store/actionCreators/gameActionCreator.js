@@ -2,7 +2,7 @@ import ActionTypes from '../../utils/store';
 
 export function createGame(deviceId, username) {
   const req = {
-    url: 'create_game',
+    url: 'createGame',
     id: deviceId,
     username
   }
@@ -16,27 +16,9 @@ export function createGame(deviceId, username) {
     promise: (socket) => socket.emit('gameAction', req)
   }
 }
-export function createGameReceive() {
-  return (dispatch) => {
-    const newRes = (res) => {
-      return dispatch({
-        type: ActionTypes.START_GAME_RECEIVE_SUCCESS,
-        gameId: res.gameId,
-        active: res.active,
-        clients: res.clients
-      })
-    }
-    return dispatch({
-      type: 'socket',
-      types: [null, null, null],
-      promise: (socket) => socket.on('createGame', newRes)
-    })
-  }
-}
-
 export function joinGame(deviceId, username, gameId) {
   const req = {
-    url: 'join_game',
+    url: 'joinGame',
     id: deviceId,
     username,
     gameId
@@ -59,6 +41,7 @@ export function joinGameReceive() {
           type: ActionTypes.JOIN_GAME_RECEIVE_SUCCESS,
           gameId: res.gameId,
           active: res.active,
+          isHost: res.isHost,
           clients: res.clients,
         });
       }
@@ -76,15 +59,50 @@ export function joinGameReceive() {
   }
 }
 export function joinGameOtherReceive() {
-  const newRes = (res) => {
+  return (dispatch) => {
+    const newRes = (res) => {
+      return dispatch({
+        type: ActionTypes.JOIN_GAME_RECEIVE_OTHER_SUCCESS,
+        clients: res.clients,
+      });
+    }
     return dispatch({
-      type: ActionTypes.JOIN_GAME_RECEIVE_OTHER_SUCCESS
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('joinGameOther', newRes)
     });
   }
-  
-  return dispatch({
-    type: 'socket',
-    types: [null, null, null],
-    promise: (socket) => socket.on('joinGameOther', newRes)
-  });
+}
+export function gameReconnectReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          type: ActionTypes.GAME_RECONNECT_RECEIVE_SUCCESS,
+          gameId: res.gameId,
+          active: res.active,
+          isHost: res.isHost,
+          isTurn: res.isTurn,
+          clients: res.clients,
+          currentPlayerId: res.currentPlayerId,
+          prevPlayerId: res.prevPlayerId,
+          reportedRoll: res.reportedRoll,
+          dice1: res.dice1,
+          dice2: res.dice2,
+          curStage: res.curStage,
+          turnResult: res.turnResult,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.GAME_RECONNECT_RECEIVE_FAIL,
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('gameReconnect', newRes)
+    });
+  }
 }

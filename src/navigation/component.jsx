@@ -2,17 +2,19 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Landing, Settings, WaitingRoom } from './../containers';
+import { Landing, WaitingRoom, GamePage, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
 
 const Stack = createStackNavigator();
 
 const Navigator = ({ 
+  gameId,
   connectSocket, 
   disconnectSocket,
   initializeUser, 
-  createGameReceive,
-  joinGameReceive
+  joinGameReceive,
+  joinGameOtherReceive,
+  gameReconnectReceive,
 }) => {
   
   useEffect(() => {
@@ -20,8 +22,9 @@ const Navigator = ({
       initializeUser(await getDeviceId(), await getUsername());
 
       await connectSocket()
-        .then(() => createGameReceive())
-        .then(() => joinGameReceive());
+        .then(() => joinGameReceive())
+        .then(() => joinGameOtherReceive())
+        .then(() => gameReconnectReceive());
     }
     setup();
     return () => disconnectSocket();
@@ -41,7 +44,17 @@ const Navigator = ({
           name="Waiting Room" 
           component={WaitingRoom} 
           options={{
-            headerShown: false,
+            headerLeft: () => null,
+            title: `${gameId}`
+            // gestureEnabled: false
+          }}
+        />
+        <Stack.Screen
+          name="Game Page"
+          component={GamePage}
+          options={{
+            headerLeft: () => null,
+            title: `${gameId}`
             // gestureEnabled: false
           }}
         />
