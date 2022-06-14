@@ -17,6 +17,8 @@ const Navigator = ({
   gameReconnectReceive,
   initGameReceive,
   nextRoundReceive,
+  rollDiceReceive,
+  rollDiceOtherReceive
 }) => {
   
   useEffect(() => {
@@ -28,7 +30,9 @@ const Navigator = ({
         .then(() => joinGameOtherReceive())
         .then(() => gameReconnectReceive())
         .then(() => initGameReceive())
-        .then(() => nextRoundReceive());
+        .then(() => nextRoundReceive())
+        .then(() => rollDiceReceive())
+        .then(() => rollDiceOtherReceive());
     }
     setup();
     return () => disconnectSocket();

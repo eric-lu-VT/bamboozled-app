@@ -206,3 +206,59 @@ export function nextRoundReceive() {
     });
   }
 }
+
+export function rollDice(deviceId, gameId) {
+  const req = {
+    url: 'rollDice',
+    id: deviceId,
+    gameId
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.ROLL_DICE_SEND,
+      ActionTypes.ROLL_DICE_SEND_SUCCESS,
+      ActionTypes.ROLL_DICE_SEND_FAIL
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function rollDiceReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          type: ActionTypes.ROLL_DICE_RECEIVE_SUCCESS,
+          dice1: res.dice1,
+          dice2: res.dice2,
+          curStage: res.curStage,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.ROLL_DICE_RECEIVE_FAIL,
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('rollDice', newRes)
+    });
+  }
+}
+export function rollDiceOtherReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      return dispatch({
+        type: ActionTypes.ROLL_DICE_OTHER_RECEIVE_SUCCESS,
+        curStage: res.curStage,
+      });
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('rollDiceOther', newRes)
+    });
+  }
+}

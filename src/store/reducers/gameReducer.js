@@ -80,6 +80,18 @@ const reducer = (state = initialState, action) => {
         curStage: action.curStage,
         turnResult: action.turnResult,
       }
+    case ActionTypes.ROLL_DICE_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        dice1: action.dice1,
+        dice2: action.dice2,
+        curStage: action.curStage,
+      }
+    case ActionTypes.ROLL_DICE_OTHER_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        curStage: action.curStage,
+      }
     default:
       return state;
   }
