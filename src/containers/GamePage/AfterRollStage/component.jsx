@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-const RollStage = ({
+const AfterRollStage = ({
   isTurn,
   clients,
   currentPlayerId,
@@ -48,4 +48,4 @@ const RollStage = ({
   );
 }
 
-export default RollStage;
+export default AfterRollStage;

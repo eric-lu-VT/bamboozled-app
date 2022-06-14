@@ -6,16 +6,26 @@ import styles from './styles';
 import PlayerList from '../../components/PlayerList';
 
 const WaitingRoom = ({
-  isHost
+  gameId,
+  active,
+  isHost,
+  deviceId,
+  initGame,
 }) => { 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    if(active) {
+      navigation.navigate('Game Page');
+    }
+  });
 
   return (
     <SafeAreaView style={styles.container}>
       <Text>Waiting Room</Text>
       <PlayerList />
       {isHost && 
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Game Page')}> 
+        <TouchableOpacity style={styles.button} onPress={() => initGame(deviceId, gameId)}> 
           <Text style={styles.lf}>Start Game</Text>
         </TouchableOpacity>
       }
