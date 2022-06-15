@@ -5,9 +5,12 @@ import styles from './styles';
 
 const ResultStage = ({
   isTurn,
+  clients,
   dice1,
   dice2,
   turnResult,
+  gameId,
+  deviceId,
 }) => {
   return (
     <View>
@@ -25,23 +28,30 @@ const ResultStage = ({
       </Text>
       {turnResult === 'honest-accept' && 
         <Text>
-
+          honest-accept
         </Text>
       }
       {turnResult === 'honest-call' && 
         <Text>
-          
+          honest-call
         </Text>
       }
       {turnResult === 'bluff-accept' && 
         <Text>
-          
+          bluff-accept
         </Text>
       }
       {turnResult === 'bluff-call' && 
         <Text>
-          
+          bluff-call
         </Text>
+      }
+      {clients[deviceId] !== undefined && 
+        clients[deviceId].hasOwnProperty('alive') && 
+        clients[deviceId].alive && 
+        <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <Text style={styles.lf}>Ok</Text>
+        </TouchableOpacity>
       }
     </View>
   );

@@ -281,3 +281,36 @@ export function declareScoreOtherReceive() {
     });
   }
 }
+
+export function acceptAttempt(deviceId, gameId, declareType) {
+  const req = {
+    url: 'acceptAttempt',
+    id: deviceId,
+    gameId,
+    declareType,
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.ACCEPT_ATTEMPT_SEND,
+      ActionTypes.ACCEPT_ATTEMPT_SEND_SUCCESS,
+      ActionTypes.ACCEPT_ATTEMPT_SEND_FAIL,
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function acceptAttemptReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      return dispatch({
+        ...res,
+        type: ActionTypes.ACCEPT_ATTEMPT_RECEIVE_SUCCESS,
+      });
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('acceptAttempt', newRes)
+    });
+  }
+}

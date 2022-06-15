@@ -14,6 +14,7 @@ import {
   rollDiceOtherReceive,
   declareScoreReceive,
   declareScoreOtherReceive,
+  acceptAttemptReceive,
 } from '../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
@@ -33,6 +34,7 @@ const mapDispatchToProps = {
   rollDiceOtherReceive,
   declareScoreReceive,
   declareScoreOtherReceive,
+  acceptAttemptReceive,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppNavigator);

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Landing, WaitingRoom, GamePage, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
+import { acceptAttemptReceive } from '../store/actionCreators/gameActionCreator';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const Navigator = ({
   rollDiceOtherReceive,
   declareScoreReceive,
   declareScoreOtherReceive,
+  acceptAttemptReceive,
 }) => {
   
   useEffect(() => {
@@ -36,7 +38,8 @@ const Navigator = ({
         .then(() => rollDiceReceive())
         .then(() => rollDiceOtherReceive())
         .then(() => declareScoreReceive())
-        .then(() => declareScoreOtherReceive());
+        .then(() => declareScoreOtherReceive())
+        .then(() => acceptAttemptReceive());
     }
     setup();
     return () => disconnectSocket();

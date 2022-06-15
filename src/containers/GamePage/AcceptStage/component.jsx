@@ -10,6 +10,9 @@ const AcceptStage = ({
   currentPlayerId,
   reportedDice1,
   reportedDice2,
+  gameId,
+  deviceId,
+  acceptAttempt,
 }) => {
   return (
     <View>
@@ -20,10 +23,10 @@ const AcceptStage = ({
       }
       {isTurn ?
         <View>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <TouchableOpacity style={styles.button} onPress={() => acceptAttempt(deviceId, gameId, 'accept')}> 
             <Text style={styles.lf}>Accept</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <TouchableOpacity style={styles.button} onPress={() => acceptAttempt(deviceId, gameId, 'call')}> 
             <Text style={styles.lf}>Call Bluff</Text>
           </TouchableOpacity>
         </View>
