@@ -18,7 +18,9 @@ const Navigator = ({
   initGameReceive,
   nextRoundReceive,
   rollDiceReceive,
-  rollDiceOtherReceive
+  rollDiceOtherReceive,
+  declareScoreReceive,
+  declareScoreOtherReceive,
 }) => {
   
   useEffect(() => {
@@ -32,7 +34,9 @@ const Navigator = ({
         .then(() => initGameReceive())
         .then(() => nextRoundReceive())
         .then(() => rollDiceReceive())
-        .then(() => rollDiceOtherReceive());
+        .then(() => rollDiceOtherReceive())
+        .then(() => declareScoreReceive())
+        .then(() => declareScoreOtherReceive());
     }
     setup();
     return () => disconnectSocket();

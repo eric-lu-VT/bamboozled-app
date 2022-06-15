@@ -38,11 +38,8 @@ export function joinGameReceive() {
     const newRes = (res) => {
       if(res.success) {
         return dispatch({
+          ...res,
           type: ActionTypes.JOIN_GAME_RECEIVE_SUCCESS,
-          gameId: res.gameId,
-          active: res.active,
-          isHost: res.isHost,
-          clients: res.clients,
         });
       }
       else {
@@ -62,8 +59,8 @@ export function joinGameOtherReceive() {
   return (dispatch) => {
     const newRes = (res) => {
       return dispatch({
+        ...res,
         type: ActionTypes.JOIN_GAME_RECEIVE_OTHER_SUCCESS,
-        clients: res.clients,
       });
     }
     return dispatch({
@@ -78,19 +75,8 @@ export function gameReconnectReceive() {
     const newRes = (res) => {
       if(res.success) {
         return dispatch({
+          ...res,
           type: ActionTypes.GAME_RECONNECT_RECEIVE_SUCCESS,
-          gameId: res.gameId,
-          active: res.active,
-          isHost: res.isHost,
-          isTurn: res.isTurn,
-          clients: res.clients,
-          currentPlayerId: res.currentPlayerId,
-          prevPlayerId: res.prevPlayerId,
-          reportedRoll: res.reportedRoll,
-          dice1: res.dice1,
-          dice2: res.dice2,
-          curStage: res.curStage,
-          turnResult: res.turnResult,
         });
       }
       else {
@@ -128,19 +114,8 @@ export function initGameReceive() {
     const newRes = (res) => {
       if(res.success) {
         return dispatch({
+          ...res,
           type: ActionTypes.INIT_GAME_RECEIVE_SUCCESS,
-          gameId: res.gameId,
-          active: res.active,
-          isHost: res.isHost,
-          isTurn: res.isTurn,
-          clients: res.clients,
-          currentPlayerId: res.currentPlayerId,
-          prevPlayerId: res.prevPlayerId,
-          reportedRoll: res.reportedRoll,
-          dice1: res.dice1,
-          dice2: res.dice2,
-          curStage: res.curStage,
-          turnResult: res.turnResult,
         });
       }
       else {
@@ -178,19 +153,8 @@ export function nextRoundReceive() {
     const newRes = (res) => {
       if(res.success) {
         return dispatch({
+          ...res,
           type: ActionTypes.NEXT_ROUND_RECEIVE_SUCCESS,
-          gameId: res.gameId,
-          active: res.active,
-          isHost: res.isHost,
-          isTurn: res.isTurn,
-          clients: res.clients,
-          currentPlayerId: res.currentPlayerId,
-          prevPlayerId: res.prevPlayerId,
-          reportedRoll: res.reportedRoll,
-          dice1: res.dice1,
-          dice2: res.dice2,
-          curStage: res.curStage,
-          turnResult: res.turnResult,
         });
       }
       else {
@@ -228,10 +192,8 @@ export function rollDiceReceive() {
     const newRes = (res) => {
       if(res.success) {
         return dispatch({
+          ...res,
           type: ActionTypes.ROLL_DICE_RECEIVE_SUCCESS,
-          dice1: res.dice1,
-          dice2: res.dice2,
-          curStage: res.curStage,
         });
       }
       else {
@@ -251,14 +213,71 @@ export function rollDiceOtherReceive() {
   return (dispatch) => {
     const newRes = (res) => {
       return dispatch({
+        ...res,
         type: ActionTypes.ROLL_DICE_OTHER_RECEIVE_SUCCESS,
-        curStage: res.curStage,
       });
     }
     return dispatch({
       type: 'socket',
       types: [null, null, null],
       promise: (socket) => socket.on('rollDiceOther', newRes)
+    });
+  }
+}
+
+export function declareScore(deviceId, gameId, declareType, dice1, dice2) {
+  const req = {
+    url: 'declareScore',
+    id: deviceId,
+    gameId,
+    declareType,
+    dice1,
+    dice2,
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.DECLARE_SCORE_SEND,
+      ActionTypes.DECLARE_SCORE_SEND_SUCCESS,
+      ActionTypes.DECLARE_SCORE_SEND_FAIL,
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function declareScoreReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          ...res,
+          type: ActionTypes.DECLARE_SCORE_RECEIVE_SUCCESS,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.DECLARE_SCORE_RECEIVE_FAIL
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('declareScore', newRes)
+    });
+  }
+}
+export function declareScoreOtherReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      return dispatch({
+        ...res,
+        type: ActionTypes.DECLARE_SCORE_OTHER_RECEIVE_SUCCESS,
+      });
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('declareScoreOther', newRes)
     });
   }
 }
