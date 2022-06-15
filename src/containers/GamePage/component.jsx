@@ -4,6 +4,7 @@ import AcceptStage from './AcceptStage';
 import BeforeRollStage from './BeforeRollStage';
 import AfterRollStage from './AfterRollStage';
 import ResultStage from './ResultStage';
+import EndGameStage from './EndGameStage';
 
 import styles from './styles';
 
@@ -15,8 +16,7 @@ const GamePage = ({
       { curStage === 'accept-stage' &&
         <AcceptStage />
       }
-      {
-        curStage === 'before-roll-stage' &&
+      { curStage === 'before-roll-stage' &&
         <BeforeRollStage />
       }
       { curStage === 'after-roll-stage' && 
@@ -24,6 +24,9 @@ const GamePage = ({
       }
       { curStage === 'result-stage' &&
         <ResultStage />
+      }
+      { curStage === 'endgame-stage' &&
+        <EndGameStage />
       }
     </SafeAreaView>
   );

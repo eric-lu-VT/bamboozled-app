@@ -114,6 +114,20 @@ const reducer = (state = initialState, action) => {
         prevPlayerId: action.prevPlayerId,
         curStage: action.curStage
       }
+    case ActionTypes.ACCEPT_ATTEMPT_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        isTurn: action.isTurn,
+        clients: action.clients,
+        currentPlayerId: action.currentPlayerId,
+        prevPlayerId: action.prevPlayerId,
+        reportedDice1: action.reportedDice1,
+        reportedDice2: action.reportedDice2,
+        dice1: action.dice1,
+        dice2: action.dice2,
+        curStage: action.curStage,
+        turnResult: action.turnResult,
+      }
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import AcceptStage from './component';
+import { acceptAttempt } from '../../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
   isTurn: state.game.isTurn,
@@ -9,10 +10,12 @@ const mapStateToProps = (state) => ({
   currentPlayerId: state.game.currentPlayerId,
   reportedDice1: state.game.reportedDice1,
   reportedDice2: state.game.reportedDice2,
+  gameId: state.game.gameId,
+  deviceId: state.user.deviceId,
 });
 
 const mapDispatchToProps = {
-  
+  acceptAttempt,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AcceptStage);
