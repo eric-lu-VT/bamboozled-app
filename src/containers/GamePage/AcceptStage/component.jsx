@@ -8,13 +8,14 @@ const AcceptStage = ({
   clients,
   prevPlayerId,
   currentPlayerId,
-  reportedRoll,
+  reportedDice1,
+  reportedDice2,
 }) => {
   return (
     <View>
       {clients[prevPlayerId] !== undefined && clients[prevPlayerId].hasOwnProperty('username') && 
         <Text>
-          {clients[prevPlayerId].username} declares a score of {reportedRoll}.
+          {clients[prevPlayerId].username} declares a score of {reportedDice1}{reportedDice2}.
         </Text>
       }
       {isTurn ?

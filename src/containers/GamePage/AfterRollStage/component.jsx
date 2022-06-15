@@ -9,6 +9,9 @@ const AfterRollStage = ({
   currentPlayerId,
   dice1,
   dice2,
+  gameId,
+  deviceId,
+  declareScore,
 }) => {
   return (
     <View>
@@ -23,10 +26,16 @@ const AfterRollStage = ({
           <Text>
             Dice 2: {dice2}
           </Text>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => declareScore(deviceId, gameId, 'honest', dice1, dice2)}
+          > 
             <Text style={styles.lf}>Accept {dice1}{dice2}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => declareScore(deviceId, gameId, 'honest', dice2, dice1)}
+          > 
             <Text style={styles.lf}>Accept {dice2}{dice1}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => {}}> 

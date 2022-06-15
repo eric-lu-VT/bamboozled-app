@@ -7,7 +7,8 @@ const mapStateToProps = (state) => ({
   clients: state.game.clients,
   prevPlayerId: state.game.prevPlayerId,
   currentPlayerId: state.game.currentPlayerId,
-  reportedRoll: state.game.reportedRoll,
+  reportedDice1: state.game.reportedDice1,
+  reportedDice2: state.game.reportedDice2,
 });
 
 const mapDispatchToProps = {

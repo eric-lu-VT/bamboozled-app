@@ -23,22 +23,22 @@ const ResultStage = ({
       <Text>
         Scores of either {dice1}{dice2} or {dice2}{dice1} are acceptable.
       </Text>
-      {turnResult === 'accept-correct' && 
+      {turnResult === 'honest-accept' && 
         <Text>
 
         </Text>
       }
-      {turnResult === 'accept-incorrect' && 
+      {turnResult === 'honest-call' && 
         <Text>
           
         </Text>
       }
-      {turnResult === 'reject-correct' && 
+      {turnResult === 'bluff-accept' && 
         <Text>
           
         </Text>
       }
-      {turnResult === 'reject-incorrect' && 
+      {turnResult === 'bluff-call' && 
         <Text>
           
         </Text>
