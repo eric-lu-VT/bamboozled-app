@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import { setUsername } from '../../utils/store';
+import AppButton from '../../components/AppButton';
 
 const Settings = ({
   username,
@@ -20,17 +21,15 @@ const Settings = ({
   
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Settings Screen</Text>
       <TextInput
         onChangeText={(text) => setName(text)}
         value={name}
         placeholder="Enter your name"
       />
-      <TouchableOpacity
+      <AppButton
         onPress={handleSubmit}
-      >
-        <Text>Save</Text>
-      </TouchableOpacity>
+        title="Save"
+      />
     </SafeAreaView>
   );
 };

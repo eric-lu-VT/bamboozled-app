@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Landing, WaitingRoom, GamePage, Settings } from './../containers';
+import { Landing, WaitingRoom, GamePage, HelpPage, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
-import { acceptAttemptReceive } from '../store/actionCreators/gameActionCreator';
+import Colors from '../utils/Colors';
+import HeaderButton from '../components/HeaderButton';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,6 @@ const Navigator = ({
   declareScoreOtherReceive,
   acceptAttemptReceive,
 }) => {
-  
   useEffect(() => {
     async function setup() {      
       initializeUser(await getDeviceId(), await getUsername());
@@ -74,8 +74,34 @@ const Navigator = ({
           }}
         />
         <Stack.Screen 
+          name="Help Page" 
+          component={HelpPage} 
+          options={{
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerLeft: () =>
+              <HeaderButton />
+          }}
+        />
+        <Stack.Screen 
           name="Settings" 
           component={Settings} 
+          options={{
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerLeft: () =>
+              <HeaderButton />
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
