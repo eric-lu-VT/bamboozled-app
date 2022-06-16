@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import Colors from '../../utils/Colors';
+import TextStyles from '../../utils/TextStyles';
 
 const Accordion = ({ 
   title,
@@ -15,7 +16,7 @@ const Accordion = ({
   };
 
   return (
-    <View>
+    <View style={styles.outer}>
       <TouchableOpacity style={styles.row} onPress={() => toggleExpand()}>
         <Text style={styles.title}>{title}</Text>
         <AntDesign name={expanded ? 'minuscircleo' : 'pluscircleo'} size={30} color='white' />
@@ -23,7 +24,7 @@ const Accordion = ({
       { 
         expanded &&
           <View style={styles.child}>
-            <Text>{data}</Text>    
+            <Text style={TextStyles.small}>{data}</Text>    
           </View>
       }
     </View>
@@ -31,28 +32,41 @@ const Accordion = ({
 };
 
 const styles = StyleSheet.create({
-  title:{
-    fontSize: 18,
-    fontWeight:'bold',
+  title: {
+    ...TextStyles.subTitle,
+    // fontSize: 18,
+    // fontWeight:'bold',
     color: 'white',
     textTransform: "uppercase"
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent:'space-between',
-    height:56,
-    paddingLeft:25,
-    paddingRight:18,
+  outer: {
+    justifyContent: 'center',
     alignItems: 'center',
-    fontWeight: "bold",
-    backgroundColor: Colors.primary.normal,
   },
-  parentHr:{
+  row: {
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 56,
+    width: Dimensions.get('window').width * 0.9,
+    paddingLeft: 25,
+    paddingRight: 18,
+    alignItems: 'center',
+    fontWeight: 'bold',
+    backgroundColor: Colors.primary.normal,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  parentHr: {
     height:1,
     color: 'white',
     width:'100%'
   },
-  child:{
+  child: {
     backgroundColor: 'white',
     padding:16,
   }

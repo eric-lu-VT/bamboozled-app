@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import { setUsername } from '../../utils/store';
 import AppButton from '../../components/AppButton';
+import AppTextInput from '../../components/AppTextInput';
 
 const Settings = ({
   username,
@@ -21,7 +22,7 @@ const Settings = ({
   
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput
+      <AppTextInput
         onChangeText={(text) => setName(text)}
         value={name}
         placeholder="Enter your name"
