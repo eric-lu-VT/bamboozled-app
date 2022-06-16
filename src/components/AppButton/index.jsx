@@ -15,10 +15,14 @@ const styles = StyleSheet.create({
   appButtonContainer: {
     elevation: 8,
     backgroundColor: Colors.primary.normal,
-    borderRadius: 10,
+    borderRadius: 24,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    marginTop: 30
+    marginTop: 30,
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   appButtonText: {
     fontSize: 18,

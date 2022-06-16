@@ -65,7 +65,7 @@ const HelpPage = ({
       'The last player standing is the winner!'
     },
     {
-      title: 'Bluffing vs. Bamboozling',
+      title: 'Bluff  / Bamboozle',
       data: 'The player who rolled the dice may choose to BLUFF by declaring a ' +
       'score that does not match what they rolled.\nThe player receiving the dice ' +
       'is BAMBOOZLED if they accept the dice when the previous player was bluffing. ' + 
@@ -88,11 +88,16 @@ const HelpPage = ({
   
   return (
     <SafeAreaView style={styles.container}>
-      {
-        data.map((e) => {
-          return <Accordion title={e.title} data={e.data} />
-        })
-      }
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        {
+          data.map((e) => {
+            return <Accordion title={e.title} data={e.data} />
+          })
+        }
+      </ScrollView>
     </SafeAreaView>
   )
 }

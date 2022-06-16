@@ -11,6 +11,7 @@
     "postinstall": "rndebugger-open"
   },
   "dependencies": {
+    "@expo-google-fonts/raleway": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@jsamr/counter-style": "^2.0.2",
     "@jsamr/react-native-li": "^2.3.1",
@@ -22,6 +23,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
     "expo": "~45.0.0",
+    "expo-font": "~10.1.0",
     "expo-secure-store": "~11.2.0",
     "lodash.omit": "^4.5.0",
     "react": "17.0.2",
