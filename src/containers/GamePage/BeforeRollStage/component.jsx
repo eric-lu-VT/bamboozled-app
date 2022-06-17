@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text} from 'react-native';
 
 import styles from './styles';
+import AppButton from '../../../components/AppButton';
 
 const AfterRollStage = ({
   isTurn,
@@ -14,20 +15,19 @@ const AfterRollStage = ({
   return (
     <View>
       {isTurn ?
-        <View>
-          <TouchableOpacity style={styles.button} onPress={() => rollDice(deviceId, gameId)}> 
-            <Text style={styles.lf}>Roll Dice</Text>
-          </TouchableOpacity>
-        </View>
+        <AppButton 
+          onPress={() => rollDice(deviceId, gameId)}
+          title="Roll Dice"
+          isArrow='true'
+        />
       :
         <View>
-          <Text>
-            {clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
-              <Text>
+          {
+            clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
+              <Text style={styles.tex}>
                 {clients[currentPlayerId].username} is rolling their dice...
               </Text>
-            }
-          </Text>
+          }
         </View>
       }
     </View>

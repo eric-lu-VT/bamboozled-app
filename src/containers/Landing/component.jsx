@@ -28,6 +28,7 @@ const Landing = ({
           navigation.navigate('Waiting Room')
         }}
         title="Create Game"
+        isArrow='true'
       />
       <CharacterInput
         placeHolder='    '
@@ -41,14 +42,17 @@ const Landing = ({
           navigation.navigate('Waiting Room');
         }}
         title="Join Game"
+        isArrow='true'
       />
       <AppButton
         onPress={() => navigation.navigate('Help Page')}
         title="How To Play"
+        isArrow='true'
       />
       <AppButton
         onPress={() => navigation.navigate('Settings')}
         title="Settings"
+        isArrow='true'
       />
     </SafeAreaView>
   )

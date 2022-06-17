@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { SafeAreaView, ScrollView } from 'react-native';
 
 import styles from './styles';
 import Accordion from '../../components/Accordion';
@@ -93,8 +92,8 @@ const HelpPage = ({
         showsHorizontalScrollIndicator={false}
       >
         {
-          data.map((e) => {
-            return <Accordion title={e.title} data={e.data} />
+          data.map((e, idx) => {
+            return <Accordion key={idx} title={e.title} data={e.data} />
           })
         }
       </ScrollView>

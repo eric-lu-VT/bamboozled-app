@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, Text, TouchableOpacity } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 import PlayerList from '../../components/PlayerList';
+import AppButton from '../../components/AppButton'
 
 const WaitingRoom = ({
   gameId,
@@ -22,12 +23,14 @@ const WaitingRoom = ({
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Waiting Room</Text>
+      <Text style={styles.subtitle}>Waiting Room</Text>
       <PlayerList />
-      {isHost && 
-        <TouchableOpacity style={styles.button} onPress={() => initGame(deviceId, gameId)}> 
-          <Text style={styles.lf}>Start Game</Text>
-        </TouchableOpacity>
+      {
+        isHost && 
+          <AppButton
+            onPress={() => initGame(deviceId, gameId)}
+            title='Start Game'
+          />
       }
     </SafeAreaView>
   ) 

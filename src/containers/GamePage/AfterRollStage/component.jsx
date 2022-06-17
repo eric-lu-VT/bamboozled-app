@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
+import CharacterInput from 'react-native-character-input'
 
 import styles from './styles';
+import AppButton from '../../../components/AppButton';
 
 const AfterRollStage = ({
   isTurn,
@@ -13,44 +15,52 @@ const AfterRollStage = ({
   deviceId,
   declareScore,
 }) => {
+  const [bluff, setBluff] = useState('')
+  const bd1 = useState(bluff[0] ? parseInt(bluff[0]) : 0);
+  const bd2 = useState(bluff[1] ? parseInt(bluff[1]) : 0);
+  
   return (
     <View>
       {isTurn ?
-        <View>
-          <Text>
+        <View style={styles.container}>
+          <Text style={styles.text}>
             You rolled:
           </Text>
-          <Text>
+          <Text style={styles.text}>
             Dice 1: {dice1}
           </Text>
-          <Text>
+          <Text style={styles.text}>
             Dice 2: {dice2}
           </Text>
-          <TouchableOpacity 
-            style={styles.button} 
+          <AppButton
             onPress={() => declareScore(deviceId, gameId, 'honest', dice1, dice2)}
-          > 
-            <Text style={styles.lf}>Accept {dice1}{dice2}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.button} 
+            title={ `Accept ${dice1}${dice2}`}
+            isArrow='true'
+          />
+          <AppButton
             onPress={() => declareScore(deviceId, gameId, 'honest', dice2, dice1)}
-          > 
-            <Text style={styles.lf}>Accept {dice2}{dice1}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => {}}> 
-            <Text style={styles.lf}>Bluff</Text>
-          </TouchableOpacity>
+            title={ `Accept ${dice2}${dice1}`}
+            isArrow='true'
+          />
+          <CharacterInput
+            placeHolder='  '
+            showCharBinary='11'
+            handleChange={(text) => setBluff(text)}
+            inputType='underlined'
+          />
+          <AppButton
+            onPress={() => declareScore(deviceId, gameId, 'bluff', bd1, bd2)}
+            title='Bluff'
+            isArrow='true'
+          />
         </View>
       :
-        <View>
-          <Text>
-            {clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
-              <Text>
-                {clients[currentPlayerId].username} is looking at their dice...
-              </Text>
-            }
-          </Text>
+        <View style={styles.container}>
+          {clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
+            <Text style={styles.text}>
+              {clients[currentPlayerId].username} is looking at their dice...
+            </Text>
+          }
         </View>
       }
     </View>
