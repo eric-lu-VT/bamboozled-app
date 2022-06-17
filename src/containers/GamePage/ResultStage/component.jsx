@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './styles';
+import AppButton from '../../../components/AppButton';
 
 const ResultStage = ({
   isTurn,
@@ -13,45 +14,51 @@ const ResultStage = ({
   deviceId,
 }) => {
   return (
-    <View>
-      <Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>
         Actual roll:
       </Text>
-      <Text>
+      <Text style={styles.text}>
         Dice 1: {dice1}
       </Text>
-      <Text>
+      <Text style={styles.text}>
         Dice 2: {dice2}
       </Text>
-      <Text>
+      <Text style={styles.text}>
         Scores of either {dice1}{dice2} or {dice2}{dice1} are acceptable.
       </Text>
-      {turnResult === 'honest-accept' && 
-        <Text>
-          honest-accept
-        </Text>
+      {
+        turnResult === 'honest-accept' && 
+          <Text style={styles.text}>
+            honest-accept
+          </Text>
       }
-      {turnResult === 'honest-call' && 
-        <Text>
-          honest-call
-        </Text>
+      {
+        turnResult === 'honest-call' && 
+          <Text style={styles.text}>
+            honest-call
+          </Text>
       }
-      {turnResult === 'bluff-accept' && 
-        <Text>
-          bluff-accept
-        </Text>
+      {
+        turnResult === 'bluff-accept' && 
+          <Text style={styles.text}>
+            bluff-accept
+          </Text>
       }
-      {turnResult === 'bluff-call' && 
-        <Text>
-          bluff-call
-        </Text>
+      {
+        turnResult === 'bluff-call' && 
+          <Text style={styles.text}>
+            bluff-call
+          </Text>
       }
-      {clients[deviceId] !== undefined && 
+      {
+        clients[deviceId] !== undefined && 
         clients[deviceId].hasOwnProperty('alive') && 
         clients[deviceId].alive && 
-        <TouchableOpacity style={styles.button} onPress={() => {}}> 
-          <Text style={styles.lf}>Ok</Text>
-        </TouchableOpacity>
+          <AppButton
+            onPress={() => {}}
+            title='Ok'
+          />
       }
     </View>
   );

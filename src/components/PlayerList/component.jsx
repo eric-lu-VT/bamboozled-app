@@ -1,24 +1,25 @@
 import React from 'react';
-import { Text } from 'react-native';
-import lowerLatin from '@jsamr/counter-style/presets/lowerLatin';
-import MarkedList from '@jsamr/react-native-li';
+import { Text, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
+import TextStyles from '../../utils/TextStyles';
 
 const PlayerList = ({
   clients
 }) => {
   return (
-    <MarkedList counterRenderer={lowerLatin}>
-      {Object.keys(clients).length !== 0 &&
-        Object.keys(clients).map((index) => (
-          clients[index] !== undefined && clients[index].hasOwnProperty('username') && 
-            <Text key={index}>
-              {clients[index].username}
-            </Text>
-        ))
+    <View>
+      {
+        Object.keys(clients).length !== 0 &&
+          Object.keys(clients).map((index) => (
+            clients[index] !== undefined && clients[index].hasOwnProperty('username') && 
+              <Text key={index} style={TextStyles.regular}>
+                - {clients[index].username}
+              </Text>
+          ))
       }
-    </MarkedList>
+    </View>
   )
 }
 

@@ -4,8 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Landing, WaitingRoom, GamePage, HelpPage, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
-import Colors from '../utils/Colors';
 import HeaderButton from '../components/HeaderButton';
+import Colors from '../utils/Colors';
+import TextStyles from '../utils/TextStyles';
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,13 @@ const Navigator = ({
           component={WaitingRoom} 
           options={{
             headerLeft: () => null,
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              ...TextStyles.subTitle,
+            },
             title: `${gameId}`
             // gestureEnabled: false
           }}
@@ -69,6 +77,13 @@ const Navigator = ({
           component={GamePage}
           options={{
             headerLeft: () => null,
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              ...TextStyles.subTitle,
+            },
             title: `${gameId}`
             // gestureEnabled: false
           }}
@@ -82,7 +97,7 @@ const Navigator = ({
             },
             headerTintColor: 'white',
             headerTitleStyle: {
-              fontWeight: 'bold',
+              ...TextStyles.subTitle,
             },
             headerLeft: () =>
               <HeaderButton />
@@ -97,7 +112,7 @@ const Navigator = ({
             },
             headerTintColor: 'white',
             headerTitleStyle: {
-              fontWeight: 'bold',
+              ...TextStyles.subTitle,
             },
             headerLeft: () =>
               <HeaderButton />

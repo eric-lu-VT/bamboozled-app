@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
 import Colors from '../../utils/Colors';
+import TextStyles from '../../utils/TextStyles';
 
 const AppButton = ({ 
   onPress, 
-  title 
+  title,
+  isArrow
 }) => (
   <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>
     <Text style={styles.appButtonText}>{title}</Text>
+    {
+      isArrow && <AntDesign name='caretright' size={25} color='white' />
+    }
   </TouchableOpacity>
 );
 
@@ -23,13 +30,15 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    display: 'flex',
+    flexDirection: "row",
+    justifyContent: 'center'
   },
   appButtonText: {
-    fontSize: 18,
+    ...TextStyles.subTitle,
     color: "white",
-    fontWeight: "bold",
     alignSelf: "center",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
   }
 });
 

@@ -9,6 +9,6 @@ export default StyleSheet.create({
   },
   logoImg: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').width * (4 / 7)
+    height: Dimensions.get('window').width * (4 / 7),
   }
 });

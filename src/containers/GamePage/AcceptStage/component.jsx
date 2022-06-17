@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './styles';
+import AppButton from '../../../components/AppButton';
 
 const AcceptStage = ({
   isTurn,
@@ -17,28 +18,30 @@ const AcceptStage = ({
   return (
     <View>
       {clients[prevPlayerId] !== undefined && clients[prevPlayerId].hasOwnProperty('username') && 
-        <Text>
-          {clients[prevPlayerId].username} declares a score of {reportedDice1}{reportedDice2}.
-        </Text>
+        <View style={styles.container}>
+          <Text style={styles.text}>
+            {clients[prevPlayerId].username} declares a score of {reportedDice1}{reportedDice2}.
+          </Text>
+        </View>
       }
       {isTurn ?
         <View>
-          <TouchableOpacity style={styles.button} onPress={() => acceptAttempt(deviceId, gameId, 'accept')}> 
-            <Text style={styles.lf}>Accept</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => acceptAttempt(deviceId, gameId, 'call')}> 
-            <Text style={styles.lf}>Call Bluff</Text>
-          </TouchableOpacity>
+          <AppButton
+            onPress={() => acceptAttempt(deviceId, gameId, 'accept')}
+            title='Accept'
+          />
+          <AppButton
+            onPress={() => acceptAttempt(deviceId, gameId, 'call')}
+            title='Call Bluff'
+          />
         </View>
         :
         <View>
-          <Text>
-            {clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
-              <Text>
-                {clients[currentPlayerId].username} is deciding...
-              </Text>
-            }
-          </Text>
+          {clients[currentPlayerId] !== undefined && clients[currentPlayerId].hasOwnProperty('username') && 
+            <Text style={styles.text}>
+              {clients[currentPlayerId].username} is deciding...
+            </Text>
+          }
         </View>
       }
     </View>
