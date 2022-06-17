@@ -53,7 +53,9 @@ const Navigator = ({
           name="Landing" 
           component={Landing}
           options={{ 
-            headerShown: false
+            headerLeft: () => null,
+            headerShown: false,
+            gestureEnabled: false
           }}
         />
         <Stack.Screen 

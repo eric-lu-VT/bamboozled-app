@@ -8,6 +8,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  innerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   dice: {
     display: 'flex',
     flexDirection: 'row',
