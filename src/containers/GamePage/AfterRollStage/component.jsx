@@ -4,6 +4,7 @@ import CharacterInput from 'react-native-character-input'
 
 import styles from './styles';
 import AppButton from '../../../components/AppButton';
+import Dice from '../../../components/Dice';
 
 const AfterRollStage = ({
   isTurn,
@@ -26,12 +27,10 @@ const AfterRollStage = ({
           <Text style={styles.text}>
             You rolled:
           </Text>
-          <Text style={styles.text}>
-            Dice 1: {dice1}
-          </Text>
-          <Text style={styles.text}>
-            Dice 2: {dice2}
-          </Text>
+          <View style={styles.dice}>
+            <Dice value={dice1}/>
+            <Dice value={dice2}/>
+          </View>
           <AppButton
             onPress={() => declareScore(deviceId, gameId, 'honest', dice1, dice2)}
             title={ `Accept ${dice1}${dice2}`}

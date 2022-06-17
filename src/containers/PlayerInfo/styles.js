@@ -5,24 +5,19 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-  },
-  header: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignSelf: 'flex-end',
-    marginRight: 10,
-    marginTop: 10
-  },
-  innerContainer: {
-    backgroundColor: 'white',
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tabButton: {
-    marginRight: 5,
+  innerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
-  textHeader: {
-    ...TextStyles.subTitle,
+  text: {
+    ...TextStyles.regular,
+  },
+  textStrikethrough: {
+    ...TextStyles.regular,
+    textDecorationLine: 'line-through',
   }
 });

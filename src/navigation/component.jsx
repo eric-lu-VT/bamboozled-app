@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Landing, WaitingRoom, GamePage, HelpPage, Settings } from './../containers';
+import { Landing, WaitingRoom, GamePage, PlayerInfo, HelpPage, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../utils/Colors';
@@ -86,6 +86,22 @@ const Navigator = ({
             },
             title: `${gameId}`
             // gestureEnabled: false
+          }}
+        />
+        <Stack.Screen
+          name="Player Info"
+          component={PlayerInfo}
+          options={{
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              ...TextStyles.subTitle,
+            },
+            title: `${gameId} - Player Info`,
+            headerLeft: () =>
+              <HeaderButton />
           }}
         />
         <Stack.Screen 
