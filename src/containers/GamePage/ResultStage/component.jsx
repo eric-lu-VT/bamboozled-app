@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 
 import styles from './styles';
 import AppButton from '../../../components/AppButton';
+import Dice from '../../../components/Dice';
 
 const ResultStage = ({
   isTurn,
@@ -18,12 +19,10 @@ const ResultStage = ({
       <Text style={styles.text}>
         Actual roll:
       </Text>
-      <Text style={styles.text}>
-        Dice 1: {dice1}
-      </Text>
-      <Text style={styles.text}>
-        Dice 2: {dice2}
-      </Text>
+      <View style={styles.dice}>
+        <Dice value={dice1}/>
+        <Dice value={dice2}/>
+      </View>
       <Text style={styles.text}>
         Scores of either {dice1}{dice2} or {dice2}{dice1} are acceptable.
       </Text>

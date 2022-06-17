@@ -8,6 +8,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  dice: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
   text: {
     ...TextStyles.regular,
   },
