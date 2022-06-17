@@ -314,3 +314,35 @@ export function acceptAttemptReceive() {
     });
   }
 }
+
+export function handleOk(deviceId, gameId) {
+  const req = {
+    url: 'handleOk',
+    id: deviceId,
+    gameId,
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.HANDLE_OK_SEND,
+      ActionTypes.HANDLE_OK_SEND_SUCCESS,
+      ActionTypes.HANDLE_OK_SEND_FAIL,
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function handleOkReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      return dispatch({
+        ...res,
+        type: ActionTypes.HANDLE_OK_RECEIVE_SUCCESS,
+      });
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('handleOk', newRes)
+    });
+  }
+}

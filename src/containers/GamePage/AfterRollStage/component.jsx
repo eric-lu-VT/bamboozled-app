@@ -17,9 +17,7 @@ const AfterRollStage = ({
   declareScore,
 }) => {
   const [bluff, setBluff] = useState('')
-  const bd1 = useState(bluff[0] ? parseInt(bluff[0]) : 0);
-  const bd2 = useState(bluff[1] ? parseInt(bluff[1]) : 0);
-  
+
   return (
     <View>
       {isTurn ?
@@ -48,7 +46,7 @@ const AfterRollStage = ({
             inputType='underlined'
           />
           <AppButton
-            onPress={() => declareScore(deviceId, gameId, 'bluff', bd1, bd2)}
+            onPress={() => declareScore(deviceId, gameId, 'bluff', parseInt(bluff[0]), parseInt(bluff[1]))}
             title='Bluff'
             isArrow='true'
           />

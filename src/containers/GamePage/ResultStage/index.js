@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import ResultStage from './component';
+import { handleOk } from '../../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
   active: state.game.active,
@@ -12,12 +13,13 @@ const mapStateToProps = (state) => ({
   dice1: state.game.dice1,
   dice2: state.game.dice2,
   turnResult: state.game.turnResult,
+  pressedOk: state.game.pressedOk,
   gameId: state.game.gameId,
   deviceId: state.user.deviceId,
 });
 
 const mapDispatchToProps = {
-  
+  handleOk,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultStage);
