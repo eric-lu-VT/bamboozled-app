@@ -5,7 +5,6 @@ import AcceptStage from './AcceptStage';
 import BeforeRollStage from './BeforeRollStage';
 import AfterRollStage from './AfterRollStage';
 import ResultStage from './ResultStage';
-import EndGameStage from './EndGameStage';
 
 import styles from './styles';
 import { AntDesign } from '@expo/vector-icons';
@@ -44,10 +43,6 @@ const GamePage = ({
         { 
           curStage === 'result-stage' &&
             <ResultStage />
-        }
-        { 
-          curStage === 'endgame-stage' &&
-            <EndGameStage />
         }
       </View>
     </SafeAreaView>
