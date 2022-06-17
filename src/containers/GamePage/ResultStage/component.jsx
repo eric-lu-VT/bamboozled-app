@@ -16,10 +16,13 @@ const ResultStage = ({
   dice1,
   dice2,
   turnResult,
+  pressedOk,
   gameId,
   deviceId,
+  handleOk,
 }) => {
   const navigation = useNavigation();
+  const [hasPressedButton, setHasPressedButton] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -69,12 +72,6 @@ const ResultStage = ({
                         {clients[currentPlayerId].username} incurred three strike cards and has been eliminated.
                       </Text>
                   }
-                  {
-                    !active &&
-                      <Text style={styles.text}>
-                        {clients[prevPlayerId].username} has won the game!
-                      </Text>
-                  }
                 </View>
             }
           </View>
@@ -116,12 +113,6 @@ const ResultStage = ({
                         {clients[prevPlayerId].username} incurred three strike cards and has been eliminated.
                       </Text>
                   }
-                  {
-                    !active &&
-                      <Text style={styles.text}>
-                        {clients[currentPlayerId].username} has won the game!
-                      </Text>
-                  }
                 </View>
             }
         </View>
@@ -130,17 +121,35 @@ const ResultStage = ({
         clients[deviceId] !== undefined && 
         clients[deviceId].hasOwnProperty('alive') && 
         clients[deviceId].alive && 
-          <AppButton
-            onPress={() => {}}
-            title='Ok'
-          />
+        active &&
+          <View>
+            {
+              hasPressedButton ? 
+                <AppButton 
+                  title={`Waiting for ${pressedOk} more...`}
+                />
+              :
+                <AppButton
+                  onPress={() => { 
+                    handleOk(deviceId, gameId);
+                    setHasPressedButton(true);
+                  } }
+                  title='Ok'
+                />
+            }
+          </View>
       }
       {
         !active &&
-          <AppButton
-            onPress={() => { navigation.navigate('Landing') }}
-            title='Leave Game'
-          />
+          <View>
+            <Text style={styles.text}>
+              {clients[currentPlayerId].username} has won the game!
+            </Text>
+            <AppButton
+              onPress={() => { navigation.navigate('Landing') }}
+              title='Leave Game'
+            />
+          </View>
       }
     </View>
   );

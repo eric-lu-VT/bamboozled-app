@@ -14,6 +14,7 @@ const initialState = {
   dice2: 0,
   curStage: '',
   turnResult: '',
+  pressedOk: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,6 +50,7 @@ const reducer = (state = initialState, action) => {
         dice2: action.dice2,
         curStage: action.curStage,
         turnResult: action.turnResult,
+        pressedOk: action.pressedOk,
       }
     case ActionTypes.INIT_GAME_RECEIVE_SUCCESS:
       return {
@@ -66,6 +68,7 @@ const reducer = (state = initialState, action) => {
         dice2: action.dice2,
         curStage: action.curStage,
         turnResult: action.turnResult,
+        pressedOk: action.pressedOk,
       }
     case ActionTypes.NEXT_ROUND_RECEIVE_SUCCESS:
       return {
@@ -83,6 +86,7 @@ const reducer = (state = initialState, action) => {
         dice2: action.dice2,
         curStage: action.curStage,
         turnResult: action.turnResult,
+        pressedOk: action.pressedOk,
       }
     case ActionTypes.ROLL_DICE_RECEIVE_SUCCESS:
       return {
@@ -117,6 +121,7 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.ACCEPT_ATTEMPT_RECEIVE_SUCCESS:
       return {
         ...state,
+        active: action.active,
         isTurn: action.isTurn,
         clients: action.clients,
         currentPlayerId: action.currentPlayerId,
@@ -127,6 +132,11 @@ const reducer = (state = initialState, action) => {
         dice2: action.dice2,
         curStage: action.curStage,
         turnResult: action.turnResult,
+      }
+    case ActionTypes.HANDLE_OK_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        pressedOk: action.pressedOk,
       }
     default:
       return state;
