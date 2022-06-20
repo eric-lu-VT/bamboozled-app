@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
   dice1: state.game.dice1,
   dice2: state.game.dice2,
   gameId: state.game.gameId,
-  deviceId: state.user.deviceId,
+  deviceId: state.local.deviceId,
 });
 
 const mapDispatchToProps = {

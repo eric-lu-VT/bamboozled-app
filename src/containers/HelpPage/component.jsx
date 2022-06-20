@@ -1,8 +1,10 @@
 import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import styles from './styles';
 import Accordion from '../../components/Accordion';
+import AppButton from '../../components/AppButton';
+import styles from './styles';
 
 const HelpPage = ({
   
@@ -84,6 +86,7 @@ const HelpPage = ({
       'unless a bluff is called.'
     }
   ];
+  const navigation = useNavigation();
   
   return (
     <SafeAreaView style={styles.container}>
@@ -96,6 +99,13 @@ const HelpPage = ({
             return <Accordion key={idx} title={e.title} data={e.data} />
           })
         }
+        <View style={styles.buttonContainer}>
+          <AppButton
+            onPress={() => navigation.navigate('Action Card Help')}
+            title="Action Card Help"
+            isArrow='true'
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   )

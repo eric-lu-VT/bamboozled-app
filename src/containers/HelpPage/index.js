@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import HelpPage from './component';
 
 const mapStateToProps = (state) => ({
-  deviceId: state.user.deviceId,
+  deviceId: state.local.deviceId,
 });
 
 const mapDispatchToProps = {

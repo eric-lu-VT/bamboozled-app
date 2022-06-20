@@ -3,6 +3,7 @@ import ActionTypes from '../../utils/store';
 const initialState = {
   deviceId: {},
   username: {},
+  curCardSelected: '',
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,10 +15,14 @@ const reducer = (state = initialState, action) => {
         username: action.username
       }
     case ActionTypes.CHANGE_USERNAME:
-      console.log(action);
       return {
         ...state,
         username: action.username
+      }
+    case ActionTypes.CHANGE_CUR_CARD_SELECTED:
+      return {
+        ...state,
+        curCardSelected: action.card
       }
     default:
       return state;

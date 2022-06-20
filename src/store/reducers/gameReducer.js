@@ -12,9 +12,12 @@ const initialState = {
   reportedDice2: 0,
   dice1: 0,
   dice2: 0,
-  curStage: '',
+  curStage: 'before-roll-stage', // temp
   turnResult: '',
   pressedOk: 0,
+  beforeActionCards: ['reverse', 'reverse', 'reverse', 'reverse', 'reverse'], // temp
+  afterActionCards: [],
+  curCard: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +54,9 @@ const reducer = (state = initialState, action) => {
         curStage: action.curStage,
         turnResult: action.turnResult,
         pressedOk: action.pressedOk,
+        beforeActionCards: action.beforeActionCards,
+        afterActionCards: action.afterActionCards,
+        curCard: action.curCard,
       }
     case ActionTypes.INIT_GAME_RECEIVE_SUCCESS:
       return {
@@ -69,6 +75,8 @@ const reducer = (state = initialState, action) => {
         curStage: action.curStage,
         turnResult: action.turnResult,
         pressedOk: action.pressedOk,
+        beforeActionCards: action.beforeActionCards,
+        afterActionCards: action.afterActionCards,
       }
     case ActionTypes.NEXT_ROUND_RECEIVE_SUCCESS:
       return {
@@ -87,6 +95,29 @@ const reducer = (state = initialState, action) => {
         curStage: action.curStage,
         turnResult: action.turnResult,
         pressedOk: action.pressedOk,
+        beforeActionCards: action.beforeActionCards,
+        afterActionCards: action.afterActionCards,
+      }
+    case ActionTypes.USE_CARD_RECEIVE_SUCCESS:
+      return {
+        ...state,
+        gameId: action.gameId,
+        active: action.active,
+        isHost: action.isHost,
+        isTurn: action.isTurn,
+        clients: action.clients,
+        currentPlayerId: action.currentPlayerId,
+        prevPlayerId: action.prevPlayerId,
+        reportedDice1: action.reportedDice1,
+        reportedDice2: action.reportedDice2,
+        dice1: action.dice1,
+        dice2: action.dice2,
+        curStage: action.curStage,
+        turnResult: action.turnResult,
+        pressedOk: action.pressedOk,
+        beforeActionCards: action.beforeActionCards,
+        afterActionCards: action.afterActionCards,
+        curCard: action.curCard,
       }
     case ActionTypes.ROLL_DICE_RECEIVE_SUCCESS:
       return {

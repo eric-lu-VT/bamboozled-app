@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   clients: state.game.clients,
   currentPlayerId: state.game.currentPlayerId,
   gameId: state.game.gameId,
-  deviceId: state.user.deviceId,
+  deviceId: state.local.deviceId,
 });
 
 const mapDispatchToProps = {

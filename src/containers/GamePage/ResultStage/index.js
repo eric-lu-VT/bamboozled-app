@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
   turnResult: state.game.turnResult,
   pressedOk: state.game.pressedOk,
   gameId: state.game.gameId,
-  deviceId: state.user.deviceId,
+  deviceId: state.local.deviceId,
 });
 
 const mapDispatchToProps = {

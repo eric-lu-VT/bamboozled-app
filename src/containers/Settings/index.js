@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import Settings from './component';
-import { changeUsername } from '../../store/actionCreators/userActionCreator';
+import { changeUsername } from '../../store/actionCreators/localActionCreator';
 
 const mapStateToProps = (state) => ({
-  username: state.user.username
+  username: state.local.username
 });
 
 const mapDispatchToProps = {

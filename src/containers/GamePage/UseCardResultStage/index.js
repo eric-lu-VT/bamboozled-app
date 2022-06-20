@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AcceptStage from './component';
+import UseCardResultStage from './component';
 import { acceptAttempt } from '../../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
@@ -18,4 +18,4 @@ const mapDispatchToProps = {
   acceptAttempt,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AcceptStage);
+export default connect(mapStateToProps, mapDispatchToProps)(UseCardResultStage);
