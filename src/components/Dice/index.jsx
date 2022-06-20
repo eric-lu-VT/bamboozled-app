@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, View} from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import Dice1 from '../../assets/dice1.png';
 import Dice2 from '../../assets/dice2.png';

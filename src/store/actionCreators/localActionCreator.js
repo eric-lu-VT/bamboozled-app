@@ -4,13 +4,20 @@ export function initializeUser(deviceId, username) {
   return {
     type: ActionTypes.INITIALIZE_USER,
     deviceId,
-    username
+    username,
   };
 }
 
 export function changeUsername(username) {
   return {
     type: ActionTypes.CHANGE_USERNAME,
-    username
+    username,
   }  
+}
+
+export function changeCurCardSelected(card) {
+  return {
+    type: ActionTypes.CHANGE_CUR_CARD_SELECTED,
+    card,
+  }
 }

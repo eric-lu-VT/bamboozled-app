@@ -132,6 +132,47 @@ export function initGameReceive() {
   }
 }
 
+export function useCard(deviceId, gameId, cardType, cardName) {
+  const req = {
+    url: 'useCard',
+    id: deviceId,
+    gameId,
+    cardType,
+    cardName,
+  }
+  return {
+    type: 'socket',
+    types: [
+      ActionTypes.NEXT_ROUND_SEND,
+      ActionTypes.NEXT_ROUND_SEND_SUCCESS,
+      ActionTypes.NEXT_ROUND_SEND_FAIL
+    ],
+    promise: (socket) => socket.emit('gameAction', req)
+  }
+}
+export function useCardReceive() {
+  return (dispatch) => {
+    const newRes = (res) => {
+      if(res.success) {
+        return dispatch({
+          ...res,
+          type: ActionTypes.USE_CARD_RECEIVE_SUCCESS,
+        });
+      }
+      else {
+        return dispatch({
+          type: ActionTypes.USE_CARD_RECEIVE_FAIL,
+        });
+      }
+    }
+    return dispatch({
+      type: 'socket',
+      types: [null, null, null],
+      promise: (socket) => socket.on('initGame', newRes)
+    });
+  }
+}
+
 export function nextRound(deviceId, gameId) {
   const req = {
     url: 'nextRound',

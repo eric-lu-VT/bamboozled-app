@@ -4,8 +4,8 @@ import Landing from './component';
 import { createGame, joinGame } from '../../store/actionCreators/gameActionCreator';
 
 const mapStateToProps = (state) => ({
-  deviceId: state.user.deviceId,
-  username: state.user.username
+  deviceId: state.local.deviceId,
+  username: state.local.username
 });
 
 const mapDispatchToProps = {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Landing, WaitingRoom, GamePage, PlayerInfo, HelpPage, Settings } from './../containers';
+import { Landing, WaitingRoom, GamePage, PlayerInfo, HelpPage, ActionCardHelp, Settings } from './../containers';
 import { getDeviceId, getUsername } from '../utils/store';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../utils/Colors';
@@ -19,6 +19,7 @@ const Navigator = ({
   joinGameOtherReceive,
   gameReconnectReceive,
   initGameReceive,
+  useCardReceive,
   nextRoundReceive,
   rollDiceReceive,
   rollDiceOtherReceive,
@@ -35,6 +36,7 @@ const Navigator = ({
         .then(() => joinGameOtherReceive())
         .then(() => gameReconnectReceive())
         .then(() => initGameReceive())
+        .then(() => useCardReceive())
         .then(() => nextRoundReceive())
         .then(() => rollDiceReceive())
         .then(() => rollDiceOtherReceive())
@@ -109,6 +111,21 @@ const Navigator = ({
         <Stack.Screen 
           name="Help Page" 
           component={HelpPage} 
+          options={{
+            headerStyle: {
+              backgroundColor: Colors.primary.normal,
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              ...TextStyles.subTitle,
+            },
+            headerLeft: () =>
+              <HeaderButton />
+          }}
+        />
+        <Stack.Screen 
+          name="Action Card Help" 
+          component={ActionCardHelp} 
           options={{
             headerStyle: {
               backgroundColor: Colors.primary.normal,

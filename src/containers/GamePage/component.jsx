@@ -4,7 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import AcceptStage from './AcceptStage';
 import BeforeRollStage from './BeforeRollStage';
 import AfterRollStage from './AfterRollStage';
-import ResultStage from './ResultStage';
+import ResultStage from './ResultStage'
+import UseCardResultStage from './UseCardResultStage';
 
 import styles from './styles';
 import { AntDesign } from '@expo/vector-icons';
@@ -43,6 +44,10 @@ const GamePage = ({
         { 
           curStage === 'result-stage' &&
             <ResultStage />
+        }
+        {
+          curStage  === 'use-card-stage' &&
+            <UseCardResultStage />
         }
       </View>
     </SafeAreaView>

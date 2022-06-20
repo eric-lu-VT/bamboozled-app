@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import AppNavigator from './component';
 
 import { connectSocket, disconnectSocket } from '../store/actionCreators/socketActionCreator';
-import { initializeUser } from '../store/actionCreators/userActionCreator';
+import { initializeUser } from '../store/actionCreators/localActionCreator';
 import { 
   joinGameReceive, 
   joinGameOtherReceive, 
   gameReconnectReceive,
   initGameReceive, 
   nextRoundReceive,
+  useCardReceive,
   rollDiceReceive,
   rollDiceOtherReceive,
   declareScoreReceive,
@@ -30,6 +31,7 @@ const mapDispatchToProps = {
   gameReconnectReceive,
   initGameReceive,
   nextRoundReceive,
+  useCardReceive,
   rollDiceReceive,
   rollDiceOtherReceive,
   declareScoreReceive,
