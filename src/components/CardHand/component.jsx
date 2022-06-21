@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, View, } from 'react-native';
+import { FlatList, TouchableOpacity, View } from 'react-native';
 
 import ActionCard from '../ActionCard';
 import styles from './styles';
@@ -17,14 +17,25 @@ const CardHand = ({
         curStage === 'before-roll-stage' &&
           <FlatList
             data={beforeActionCards}
-            renderItem={({item, idx}) => {
+            keyExtractor={(item, index) => index}
+            renderItem={({item, index}) => {
               return (
-                <TouchableOpacity onPress={() => changeCurCardSelected(idx)}>
-                  <ActionCard name={item} isSelected={idx === curCardSelected}/>
-                </TouchableOpacity>
+                <View>
+                  {
+                    (index === curCardSelected) ? 
+                      <TouchableOpacity onPress={() => changeCurCardSelected('')}>
+                        <ActionCard 
+                          name={item} isSelected={index === curCardSelected}/>
+                      </TouchableOpacity>
+                    : 
+                      <TouchableOpacity onPress={() => changeCurCardSelected(index)}>
+                        <ActionCard 
+                          name={item} isSelected={index === curCardSelected}/>
+                      </TouchableOpacity>
+                  }
+                </View>
               )
             }}
-            keyExtractor={(item, idx) => idx}
             numColumns={beforeActionCards.length}
             scrollEnabled
             showsHorizontalScrollIndicator={false}
@@ -33,14 +44,25 @@ const CardHand = ({
       {
         <FlatList
           data={afterActionCards}
-          renderItem={({item, idx}) => {
+          keyExtractor={(item, index) => index}
+          renderItem={({item, index}) => {
             return (
-              <TouchableOpacity onPress={() => ({})}>
-                <ActionCard name={item} />
-              </TouchableOpacity>
+              <View>
+                {
+                  (index === curCardSelected) ? 
+                    <TouchableOpacity onPress={() => changeCurCardSelected('')}>
+                      <ActionCard 
+                        name={item} isSelected={index === curCardSelected}/>
+                    </TouchableOpacity>
+                  : 
+                    <TouchableOpacity onPress={() => changeCurCardSelected(index)}>
+                      <ActionCard 
+                        name={item} isSelected={index === curCardSelected}/>
+                    </TouchableOpacity>
+                }
+              </View>
             )
           }}
-          keyExtractor={(item, idx) => idx}
           numColumns={afterActionCards.length}
           scrollEnabled
           showsHorizontalScrollIndicator={false}
@@ -51,16 +73,3 @@ const CardHand = ({
 }
 
 export default CardHand;
-
-/*
-          <View style={styles.container}>
-            {
-              beforeActionCards.length !== 0 &&
-              beforeActionCards.map((e, idx) => {
-                return (
-                  <ActionCard key={idx} name={e}/>
-                )
-              })
-            }
-          </View>
-*/

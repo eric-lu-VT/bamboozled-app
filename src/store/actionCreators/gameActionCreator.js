@@ -168,7 +168,7 @@ export function useCardReceive() {
     return dispatch({
       type: 'socket',
       types: [null, null, null],
-      promise: (socket) => socket.on('initGame', newRes)
+      promise: (socket) => socket.on('useCard', newRes)
     });
   }
 }
