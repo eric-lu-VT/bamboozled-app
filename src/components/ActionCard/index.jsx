@@ -19,56 +19,56 @@ const ActionCard = ({
       {
         name === 'double' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(DoubleImg).uri}}
         />
       }
       {
         name === 'fresh_start' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(FreshStartImg).uri}}
         />
       }
       {
         name === 'jackpot' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(JackpotImg).uri}}
         />
       }
       {
         name === 'my_bad' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(MyBadImg).uri}}
         />
       }
       {
         name === 'reverse' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(ReverseImg).uri}}
         />
       }
       {
         name === 'revive' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(ReviveImg).uri}}
         />
       }
       {
         name === 'skip' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(SkipImg).uri}}
         />
       }
       {
         name === 'up_down' &&
         <Image
-          style={styles.actionCardImg}
+          style={(isSelected) ? styles.actionCardImgSelected : styles.actionCardImg}
           source={{uri: Image.resolveAssetSource(UpDownImg).uri}}
         />
       }
@@ -81,6 +81,13 @@ const styles = StyleSheet.create({
     width: 175,
     height: 105,
     margin: 5
+  },
+  actionCardImgSelected: {
+    width: 175,
+    height: 105,
+    margin: 5,
+    borderWidth: 3,
+    borderColor: 'black',
   }
 });
 

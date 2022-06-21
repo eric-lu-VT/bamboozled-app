@@ -85,7 +85,9 @@ const ResultStage = ({
                 <View style={styles.innerContainer}>
                   <Text style={styles.text}>
                     {clients[prevPlayerId].username}'s claim of {reportedDice1}{reportedDice2} was a bluff.
-                    {clients[prevPlayerId].username} draws an action card.
+                  </Text>
+                  <Text style={styles.text}>
+                    Thus, {clients[prevPlayerId].username} draws an action card.
                   </Text>
                   <Text style={styles.text}>
                     {clients[currentPlayerId].username} was bamboozled, but faces no penalty.

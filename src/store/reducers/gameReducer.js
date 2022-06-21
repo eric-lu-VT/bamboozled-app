@@ -15,7 +15,7 @@ const initialState = {
   curStage: 'before-roll-stage', // temp
   turnResult: '',
   pressedOk: 0,
-  beforeActionCards: ['reverse', 'reverse', 'reverse', 'reverse', 'reverse'], // temp
+  beforeActionCards: [], // temp 'reverse', 'reverse', 'reverse', 'reverse', 'reverse'
   afterActionCards: [],
   curCard: '',
 };
@@ -163,6 +163,8 @@ const reducer = (state = initialState, action) => {
         dice2: action.dice2,
         curStage: action.curStage,
         turnResult: action.turnResult,
+        beforeActionCards: action.beforeActionCards,
+        afterActionCards: action.afterActionCards,
       }
     case ActionTypes.HANDLE_OK_RECEIVE_SUCCESS:
       return {
