@@ -307,21 +307,6 @@ export function declareScoreReceive() {
     });
   }
 }
-export function declareScoreOtherReceive() {
-  return (dispatch) => {
-    const newRes = (res) => {
-      return dispatch({
-        ...res,
-        type: ActionTypes.DECLARE_SCORE_OTHER_RECEIVE_SUCCESS,
-      });
-    }
-    return dispatch({
-      type: 'socket',
-      types: [null, null, null],
-      promise: (socket) => socket.on('declareScoreOther', newRes)
-    });
-  }
-}
 
 export function acceptAttempt(deviceId, gameId, declareType) {
   const req = {

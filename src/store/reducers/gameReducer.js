@@ -134,15 +134,7 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.DECLARE_SCORE_RECEIVE_SUCCESS:
       return {
         ...state,
-        reportedDice1: action.reportedDice1,
-        reportedDice2: action.reportedDice2,
-        currentPlayerId: action.currentPlayerId,
-        prevPlayerId: action.prevPlayerId,
-        curStage: action.curStage
-      }
-    case ActionTypes.DECLARE_SCORE_OTHER_RECEIVE_SUCCESS:
-      return {
-        ...state,
+        isTurn: action.isTurn,
         reportedDice1: action.reportedDice1,
         reportedDice2: action.reportedDice2,
         currentPlayerId: action.currentPlayerId,
