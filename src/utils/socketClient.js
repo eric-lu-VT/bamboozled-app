@@ -1,12 +1,11 @@
 import { io } from 'socket.io-client';
-
-import { BACKEND_URL } from './constants';
+import Constants from 'expo-constants';
 
 export default class socketAPI {
   socket;
 
   connect() {
-    this.socket = io(BACKEND_URL, {
+    this.socket = io(Constants.manifest.extra.BACKEND_URL, {
       transports: ['websocket'],
     });
     return new Promise((resolve, reject) => {
