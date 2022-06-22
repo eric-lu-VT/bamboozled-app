@@ -49,6 +49,8 @@ A functional implementation of the dice bluffing game "Bamboozled", to be played
 2. Run `.exe` file
 3. Hook to port 19000
 
+Also, make sure to install the [Bamboozled Backend](https://github.com/eric-lu-VT/bamboozled-backend).
+
 ## Known Issues
 
 ## Roadmap
