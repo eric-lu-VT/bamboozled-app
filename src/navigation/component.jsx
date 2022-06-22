@@ -24,7 +24,6 @@ const Navigator = ({
   rollDiceReceive,
   rollDiceOtherReceive,
   declareScoreReceive,
-  declareScoreOtherReceive,
   acceptAttemptReceive,
 }) => {
   useEffect(() => {
@@ -41,7 +40,6 @@ const Navigator = ({
         .then(() => rollDiceReceive())
         .then(() => rollDiceOtherReceive())
         .then(() => declareScoreReceive())
-        .then(() => declareScoreOtherReceive())
         .then(() => acceptAttemptReceive());
     }
     setup();

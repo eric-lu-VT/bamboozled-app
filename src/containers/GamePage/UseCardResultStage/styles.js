@@ -7,6 +7,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  innerContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   text: {
     ...TextStyles.regular,
   }

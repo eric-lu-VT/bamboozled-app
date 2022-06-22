@@ -14,7 +14,6 @@ import {
   rollDiceReceive,
   rollDiceOtherReceive,
   declareScoreReceive,
-  declareScoreOtherReceive,
   acceptAttemptReceive,
 } from '../store/actionCreators/gameActionCreator';
 
@@ -35,7 +34,6 @@ const mapDispatchToProps = {
   rollDiceReceive,
   rollDiceOtherReceive,
   declareScoreReceive,
-  declareScoreOtherReceive,
   acceptAttemptReceive,
 }
 
